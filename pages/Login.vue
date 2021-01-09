@@ -24,6 +24,7 @@
 <script>
 import AppButton from '@/components/SingleComponents/Button'
 export default {
+  layout: 'login',
   components: {
     AppButton,
   },
@@ -38,6 +39,9 @@ export default {
     submitHandler() {
       this.$router.push('/')
     },
+  },
+  head: {
+    title: `Войти`,
   },
 }
 </script>
@@ -58,9 +62,8 @@ export default {
   &-input {
     border: 1px solid #cbcbcb;
     border-radius: 10px;
-    margin: 8px 0;
     width: 358px;
-
+    margin-bottom: 20px;
     color: #9496a6;
     padding: 12px 20px;
   }
