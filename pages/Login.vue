@@ -35,7 +35,11 @@
         </div>
       </div>
       <app-button :button="button" />
+      <div class="authError">
+        <span class="error">{{ errorAth }}</span>
+      </div>
     </form>
+
     <nuxt-link class="nuxtLink" to="/registration"
       >Зарегистрироваться</nuxt-link
     >
@@ -47,6 +51,7 @@ import { required, minLength } from 'vuelidate/lib/validators'
 import AppButton from '@/components/SingleComponents/Button'
 export default {
   layout: 'login',
+
   validations: {
     login: {
       required,
@@ -63,7 +68,7 @@ export default {
   data: () => ({
     login: '',
     password: '',
-
+    errorAth: '',
     button: { text: 'Войти' },
   }),
   methods: {
@@ -78,7 +83,9 @@ export default {
             password: this.password,
           })
           this.$router.push('/')
-        } catch (e) {}
+        } catch (e) {
+          this.errorAth = e.response.data.message
+        }
       }
     },
   },
@@ -123,6 +130,13 @@ export default {
   position: absolute;
   color: red;
   font-size: 10px;
+}
+.authError {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
 }
 .nuxtLink {
   margin: 10px;

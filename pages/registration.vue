@@ -59,7 +59,6 @@
 import { required, minLength, sameAs } from 'vuelidate/lib/validators'
 import AppButton from '@/components/SingleComponents/Button'
 export default {
-  middleware: ['auth'],
   layout: 'login',
   validations: {
     login: {
@@ -81,6 +80,8 @@ export default {
     login: '',
     password: '',
     repeatPassword: '',
+    FirstName: '',
+    LastName: '',
     button: { text: 'Создать' },
   }),
   methods: {
@@ -93,6 +94,8 @@ export default {
           await this.$store.dispatch('auth/create', {
             login: this.login,
             password: this.repeatPassword,
+            FirstName: this.FirstName,
+            LastName: this.LastName,
           })
           this.$router.push('/')
         } catch (e) {}

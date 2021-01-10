@@ -1,5 +1,9 @@
 <template>
-  <div>Clearing data...</div>
+  <div class="container">
+    <div class="pageContent">
+      <div>Clearing data...</div>
+    </div>
+  </div>
 </template>
 
 <script>

@@ -1,11 +1,27 @@
-const {Router} = require('express');
-const {login, createUser} = require('../controllers/auth.controller');
-const router = Router();
+const passport = require('passport')
+const { Router } = require('express')
+const {
+  login,
+  createUser,
+  updateUser,
+  FeathUser,
+} = require('../controllers/auth.controller')
+const router = Router()
 
-// '/api/auth/admin/login'
-router.post('/admin/login', login);
+router.post('/login', login)
 
-// '/api/auth/admin/create'
-router.post('/admin/create', createUser);
+router.post('/create', createUser)
 
-module.exports = router;
+router.put(
+  '/update',
+  passport.authenticate('jwt', { session: false }),
+  updateUser
+)
+
+router.get(
+  '/FeathUser/:id',
+  passport.authenticate('jwt', { session: false }),
+  FeathUser
+)
+
+module.exports = router

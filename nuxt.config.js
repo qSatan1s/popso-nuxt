@@ -22,7 +22,7 @@ module.exports = {
   css: ['~assets/scss/_setting.scss'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/Vuelidate'],
+  plugins: ['~/plugins/Vuelidate', '@/plugins/axios'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,

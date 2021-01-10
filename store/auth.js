@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode'
 
 export const state = () => ({
   token: false,
+  user: [],
 })
 
 export const mutations = {
@@ -13,12 +14,15 @@ export const mutations = {
   clearToken(state) {
     state.token = null
   },
+  setUser(state, user) {
+    state.user = user
+  },
 }
 
 export const actions = {
   async login({ dispatch, commit }, data) {
     try {
-      const { token } = await this.$axios.$post('/api/auth/admin/login', data)
+      const { token } = await this.$axios.$post('/api/auth/login', data)
       dispatch('setToken', token)
     } catch (e) {
       commit('setError', e, { root: true })
@@ -27,7 +31,26 @@ export const actions = {
   },
   async create({ dispatch, commit }, data) {
     try {
-      await this.$axios.$post('/api/auth/admin/create', data)
+      await this.$axios.$post('/api/auth/create', data)
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
+  },
+  async updateUser({ dispatch, commit, getters }, data) {
+    const id = jwtDecode(getters.token).userId
+    try {
+      return await this.$axios.$put('/api/auth/update', { data, id })
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
+  },
+  async FeatchInfo({ commit, getters }) {
+    const id = jwtDecode(getters.token).userId
+    try {
+      const user = await this.$axios.$get('/api/auth/FeathUser/' + id)
+      commit('setUser', user)
     } catch (e) {
       commit('setError', e, { root: true })
       throw e
@@ -61,6 +84,7 @@ export const actions = {
 export const getters = {
   isAuthenticated: (state) => !!state.token,
   token: (state) => state.token,
+  user: (state) => state.user,
 }
 
 function isTokenValid(token) {

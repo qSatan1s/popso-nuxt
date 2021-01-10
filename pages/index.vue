@@ -52,14 +52,34 @@
         </div>
         <div class="BigGroup">
           <div class="group">
-            <input v-model="password" type="text" />
+            <input v-model="$v.password.$model" type="password" />
             <span class="bar"></span>
             <label>Сменить пароль</label>
+            <div
+              v-if="!$v.password.required && $v.password.$dirty"
+              class="error"
+            >
+              Пожалуйста заполните поле
+            </div>
+            <div
+              v-if="!$v.password.minLength && $v.password.$dirty"
+              class="error"
+            >
+              Минимальное значение
+              {{ $v.password.$params.minLength.min }} символов
+            </div>
           </div>
           <div class="group">
-            <input v-model="login" type="text" />
+            <input v-model="$v.login.$model" type="text" />
             <span class="bar"></span>
             <label>Сменить логин</label>
+            <div v-if="!$v.login.required && $v.login.$dirty" class="error">
+              Пожалуйста заполните поле
+            </div>
+            <div v-if="!$v.login.minLength && $v.login.$dirty" class="error">
+              Минимальное значение
+              {{ $v.login.$params.minLength.min }} символов
+            </div>
           </div>
         </div>
         <app-button class="AppBtn" :button="button" />
@@ -69,6 +89,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import AppButton from '@/components/SingleComponents/Button'
 import { required, minLength } from 'vuelidate/lib/validators'
 export default {
@@ -88,24 +109,60 @@ export default {
       required,
       minLength: minLength(3),
     },
+    login: {
+      required,
+      minLength: minLength(2),
+    },
+    password: {
+      required,
+      minLength: minLength(4),
+    },
   },
   data: () => ({
     FirstName: '',
-    password: '',
+    password: null,
     LastName: '',
     login: '',
 
     button: { text: 'Сохранить' },
   }),
+  watch: {
+    user() {
+      this.setUser()
+    },
+  },
+  async mounted() {
+    await this.$store.dispatch('auth/FeatchInfo')
+  },
+  computed: {
+    ...mapGetters({
+      user: 'auth/user',
+    }),
+  },
   methods: {
-    submitHandler() {
-      console.log('submit!')
+    async submitHandler() {
       this.$v.$touch()
       if (this.$v.$invalid) {
         return false
       } else {
-        console.log('всё окей')
+        const FormData = {
+          login: this.login,
+          FirstName: this.FirstName,
+          LastName: this.LastName,
+          password: this.password || null,
+        }
+        try {
+          await this.$store.dispatch('auth/updateUser', {
+            FormData,
+          })
+          this.$router.push('/')
+        } catch (e) {}
       }
+    },
+    setUser() {
+      this.FirstName = this.user.FirstName
+      this.LastName = this.user.LastName
+      this.login = this.user.login
     },
   },
 }
