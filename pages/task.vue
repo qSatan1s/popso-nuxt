@@ -19,7 +19,7 @@
         </div>
       </div>
       <span v-if="tasks.length === 0" class="FalseTask"
-        >На сегодня заданий нет</span
+        >На сегодня задач нет</span
       >
     </div>
   </div>
@@ -32,11 +32,14 @@ export default {
     check: true,
   }),
   async mounted() {
-    await this.$store.dispatch('tasks/FeatchPost')
+    await this.$store.dispatch('tasks/FeatchTask')
+  },
+  head: {
+    title: `Задачи`,
   },
   computed: {
     ...mapGetters({
-      tasks: 'tasks/allPosts',
+      tasks: 'tasks/allTasks',
     }),
   },
 }

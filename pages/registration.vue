@@ -34,16 +34,29 @@
           {{ $v.password.$params.minLength.min }} символов
         </div>
       </div>
+      <div class="formInput">
+        <input
+          v-model.trim="$v.repeatPassword.$model"
+          :class="{ 'input--error': $v.repeatPassword.$error }"
+          placeholder="Подтверждение пароля"
+          class="login_auth-input"
+          type="password"
+        />
+        <div
+          v-if="!$v.repeatPassword.sameAsPassword && $v.repeatPassword.$dirty"
+          class="error"
+        >
+          Пароль не совпадают
+        </div>
+      </div>
       <app-button :button="button" />
     </form>
-    <nuxt-link class="nuxtLink" to="/registration"
-      >Зарегистрироваться</nuxt-link
-    >
+    <nuxt-link class="nuxtLink" to="/login">уже есть аккаунт</nuxt-link>
   </main>
 </template>
 
 <script>
-import { required, minLength } from 'vuelidate/lib/validators'
+import { required, minLength, sameAs } from 'vuelidate/lib/validators'
 import AppButton from '@/components/SingleComponents/Button'
 export default {
   layout: 'login',
@@ -56,6 +69,9 @@ export default {
       required,
       minLength: minLength(4),
     },
+    repeatPassword: {
+      sameAsPassword: sameAs('password'),
+    },
   },
   components: {
     AppButton,
@@ -63,8 +79,8 @@ export default {
   data: () => ({
     login: '',
     password: '',
-
-    button: { text: 'Войти' },
+    repeatPassword: '',
+    button: { text: 'Создать' },
   }),
   methods: {
     submitHandler() {
@@ -78,7 +94,7 @@ export default {
     },
   },
   head: {
-    title: `Войти`,
+    title: `Регистрация`,
   },
 }
 </script>

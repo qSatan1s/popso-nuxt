@@ -75,6 +75,9 @@ export default {
   components: {
     AppButton,
   },
+  head: {
+    title: `Мой профиль`,
+  },
   validations: {
     FirstName: {
       required,

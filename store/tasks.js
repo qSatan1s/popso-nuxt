@@ -1,25 +1,25 @@
 export const actions = {
-  async FeatchPost(ctx, limit = Math.floor(Math.random() * Math.floor(10))) {
+  async FeatchTask(ctx, limit = Math.floor(Math.random() * Math.floor(10))) {
     const res = await fetch(
       'https://jsonplaceholder.typicode.com/todos?_limit=' + limit
     )
 
-    const posts = await res.json()
+    const tasks = await res.json()
 
-    ctx.commit('updatePost', posts)
+    ctx.commit('updatePost', tasks)
   },
 }
 
 export const state = () => ({
-  posts: [],
+  tasks: [],
 })
 
 export const mutations = {
-  updatePost(state, posts) {
-    state.posts = posts
+  updatePost(state, tasks) {
+    state.tasks = tasks
   },
 }
 
 export const getters = {
-  allPosts: (state) => state.posts,
+  allTasks: (state) => state.tasks,
 }
