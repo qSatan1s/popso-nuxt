@@ -9,7 +9,7 @@
 <p>нажмите кнопку connect, создайте админа данные могут быть любые, они нам понадобятся, привяжите свой IP </p>
 <p>Выберите Connect your application</p>
 привяжите бд к приложению указав ссылку вида
-<p> ( mongodb+srv:// &#60;username	&#62; : &#60;password	&#62;@cluster0.mwphw.mongodb.net/<dbname>?retryWrites=true&w=majority ) </p>
+<p> ( mongodb+srv:// &#60;username&#62; : &#60;password&#62;@cluster0.mwphw.mongodb.net/<dbname>?retryWrites=true&w=majority ) </p>
 <p> вставив её в файл keys.dev.js  </p>
 <p>  либо  </p>
 <p>  поместитите в специальную переменную env.MONGO_URL  </p>
