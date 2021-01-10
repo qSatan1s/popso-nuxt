@@ -13,10 +13,18 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.0.2",
+    "bcrypt": "^5.0.0",
     "chart.js": "^2.9.4",
+    "cookie": "^0.4.1",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
+    "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
+    "mongoose": "^5.11.11",
     "nuxt": "^2.14.6",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "vue-chartjs": "^3.5.1",
     "vuelidate": "^0.7.6"
   },

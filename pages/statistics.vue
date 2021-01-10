@@ -32,6 +32,7 @@
 import LineChart from '@/components/LineChart.vue'
 
 export default {
+  middleware: ['auth'],
   name: 'App',
   components: { LineChart },
   data: () => ({

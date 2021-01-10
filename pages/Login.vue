@@ -67,13 +67,18 @@ export default {
     button: { text: 'Войти' },
   }),
   methods: {
-    submitHandler() {
-      console.log('submit!')
+    async submitHandler() {
       this.$v.$touch()
       if (this.$v.$invalid) {
         return false
       } else {
-        console.log('всё окей')
+        try {
+          await this.$store.dispatch('auth/login', {
+            login: this.login,
+            password: this.password,
+          })
+          this.$router.push('/')
+        } catch (e) {}
       }
     },
   },

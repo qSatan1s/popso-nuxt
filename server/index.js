@@ -1,8 +1,8 @@
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
-const config = require('../nuxt.config.js')
 const app = require('./app')
 
+const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
 
 async function start() {
@@ -10,7 +10,7 @@ async function start() {
 
   const {
     host = process.env.HOST || '127.0.0.1',
-    port = process.env.PORT || 3000,
+    port = process.env.PORT || 7000
   } = nuxt.options.server
 
   if (config.dev) {
@@ -23,7 +23,7 @@ async function start() {
   app.listen(port, host, () => {
     consola.ready({
       message: `Server listening on http://${host}:${port}`,
-      badge: true,
+      badge: true
     })
   })
 }

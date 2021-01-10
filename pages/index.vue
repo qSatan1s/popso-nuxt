@@ -72,6 +72,7 @@
 import AppButton from '@/components/SingleComponents/Button'
 import { required, minLength } from 'vuelidate/lib/validators'
 export default {
+  middleware: ['auth'],
   components: {
     AppButton,
   },

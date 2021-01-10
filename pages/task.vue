@@ -28,6 +28,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  middleware: ['auth'],
   data: () => ({
     check: true,
   }),
