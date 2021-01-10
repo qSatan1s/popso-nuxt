@@ -3,12 +3,12 @@
 ## Build Setup
 
 Для запуска приложение требуется привязать базу mongodb
-https://www.mongodb.com/
+<p>  https://www.mongodb.com/  </p>
 после регистрации на сайте создайте базу данных и привяжите её к приложению указав ссылку вида
-( mongodb+srv://<username>:<password >@cluster0.mwphw.mongodb.net/popso?retryWrites=true&w=majority )
-и вставьте в файле keys.dev.js
-либо
-поместитите в специальную переменную env.MONGO_URL
+<p> ( mongodb+srv://<username>:<password >@cluster0.mwphw.mongodb.net/popso?retryWrites=true&w=majority ) </p>
+<p> и вставьте в файле keys.dev.js  </p>
+<p>  либо  </p>
+<p>  поместитите в специальную переменную env.MONGO_URL  </p>
 
 ![popso](./assets/images/README.md/screen1.jpg)
 
