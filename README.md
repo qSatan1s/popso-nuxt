@@ -1,17 +1,17 @@
-**FULLSTACK NUXT + EXPRESS + MONGODB** 
+**FULLSTACK NUXT + EXPRESS + MONGODB**
 
 ## Build Setup
+
 Для запуска приложение требуется привязать базу mongodb
 https://www.mongodb.com/
 после регистрации на сайте создайте базу данных и привяжите её к приложению указав ссылку вида
 ( mongodb+srv://<username>:<password >@cluster0.mwphw.mongodb.net/popso?retryWrites=true&w=majority )
-и вставьте в файле keys.dev.js 
-либо 
-поместитите в специальную переменную env.MONGO_URL  
+и вставьте в файле keys.dev.js
+либо
+поместитите в специальную переменную env.MONGO_URL
 
+![popso](./assets/images/README.md/screen1.jpg)
 
-![popso](./src/assets/images/README.md/screen1.jpg)
- 
 ```bash
 # install dependencies
 $ yarn install
